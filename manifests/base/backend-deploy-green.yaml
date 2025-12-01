@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: edgewave-backend-green
+  namespace: edgewave
+  labels:
+    app: edgewave-backend
+    color: green
+    track: green
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: edgewave-backend
+      track: green
+  template:
+    metadata:
+      labels:
+        app: edgewave-backend
+        color: green
+        track: green
+    spec:
+      containers:
+        - name: edgewave-backend
+          image: gauravchile/edgewave:backend-green-v1.0.0
+          ports:
+            - containerPort: 8000
+          env:
+            - name: NODE_ENV
+              value: "production"

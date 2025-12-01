@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: edgewave-backend-blue
+  namespace: edgewave
+  labels:
+    app: edgewave-backend
+    color: blue
+    track: blue
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: edgewave-backend
+      track: blue
+  template:
+    metadata:
+      labels:
+        app: edgewave-backend
+        color: blue
+        track: blue
+    spec:
+      containers:
+        - name: edgewave-backend
+          image: gauravchile/edgewave:backend-blue-v1.0.4
+          ports:
+            - containerPort: 8000
+          env:
+            - name: NODE_ENV
+              value: "production"

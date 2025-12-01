@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: edgewave-ingress
+  namespace: edgewave
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /v1/api
+            pathType: Prefix
+            backend:
+              service:
+                name: edgewave-backend
+                port:
+                  number: 8080
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: edgewave-frontend
+                port:
+                  number: 80

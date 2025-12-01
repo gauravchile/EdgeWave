@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - namespace.yaml
+  - backend-deploy-blue.yaml
+  - backend-deploy-green.yaml
+  - backend-svc.yaml
+  - frontend-deploy-blue.yaml
+  - frontend-deploy-green.yaml
+  - frontend-svc.yaml
